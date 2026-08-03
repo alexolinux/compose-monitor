@@ -15,11 +15,10 @@ services:
       - portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
   
-  #
   node-exporter:
     image: prom/node-exporter:latest
-    container_name: node-exporter
-    hostname: node-exporter
+    container_name: raspberry-exporter
+    hostname: raspberry-exporter
     restart: unless-stopped
     volumes:
       - /proc:/host/proc:ro
@@ -39,6 +38,9 @@ services:
     image: prom/prometheus:latest
     container_name: prometheus
     hostname: prometheus
+    extra_hosts:
+      - "raspberry.local:${DATASOURCE1}"
+      - "blackberry.local:${DATASOURCE2}"
     restart: unless-stopped
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -68,6 +70,7 @@ services:
       - GF_SERVER_ROOT_URL=http://localhost:3003
     volumes:
       - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
     ports:
       - "3003:3000"
     networks:
@@ -81,3 +84,4 @@ volumes:
   prometheus_data: {}
   portainer_data: {}
   grafana_data: {}
+
