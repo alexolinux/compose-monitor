@@ -20,4 +20,3 @@ scrape_configs:
 #    basic_auth:
 #      username: '<Your Grafana Username>'
 #      password: '<Your Grafana Cloud Access Policy Token>'
-

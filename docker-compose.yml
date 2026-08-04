@@ -39,8 +39,8 @@ services:
     container_name: prometheus
     hostname: prometheus
     extra_hosts:
-      - "raspberry.local:${DATASOURCE1}"
-      - "blackberry.local:${DATASOURCE2}"
+      - "raspberry.local:${HOST1}"
+      - "blackberry.local:${HOST2}"
     restart: unless-stopped
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
