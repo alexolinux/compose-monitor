@@ -1,5 +1,7 @@
 # compose-monitor
 
+-----------------
+
 A lightweight monitoring stack for Raspberry Pi hosts using Docker Compose, Prometheus, Grafana, and node-exporter.
 
 This project monitors multiple Linux hosts in the same local network, with a Grafana dashboard ready for primary system metrics such as CPU, memory, network usage, disk, load average, and uptime.
@@ -63,7 +65,7 @@ It includes:
 2. Review the environment settings:
 
    ```bash
-   nano .env
+   vim .env
    ```
 
    Example values:
@@ -80,7 +82,7 @@ It includes:
 3. Confirm the hosts to be monitored:
 
    ```bash
-   nano prometheus.local.yml
+   vim prometheus.local.yml
    ```
 
    Example:
