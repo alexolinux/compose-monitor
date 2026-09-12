@@ -18,6 +18,7 @@
 # Local Docker Compose overrides
 docker-compose.override.yml
 docker-compose.local.yml
+prometheus.local.yml
 
 # Docker / Podman logs & temp files
 *.log
