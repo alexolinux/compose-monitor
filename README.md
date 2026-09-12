@@ -57,14 +57,14 @@ It includes:
 
 1. Clone the repository on the Raspberry Pi or monitoring host:
 
-   ```bash
+   ```shell
    git clone <your-repo-url>
    cd compose-monitor
    ```
 
 2. Review the environment settings:
 
-   ```bash
+   ```shell
    vim .env
    ```
 
@@ -81,7 +81,7 @@ It includes:
 
 3. Confirm the hosts to be monitored:
 
-   ```bash
+   ```shell
    vim prometheus.local.yml
    ```
 
@@ -107,13 +107,13 @@ It includes:
 
 4. Start the monitoring stack:
 
-   ```bash
+   ```shell
    docker compose up -d
    ```
 
 5. Check the services:
 
-   ```bash
+   ```shell
    docker compose ps
    ```
 
@@ -140,7 +140,7 @@ The monitoring host resolves the private targets through the Prometheus `extra_h
 
 Example command to run on each target host:
 
-```bash
+```shell
 docker run -d \
   --name node-exporter \
   --restart unless-stopped \
@@ -156,7 +156,7 @@ docker run -d \
 
 Then verify the metrics endpoint:
 
-```bash
+```shell
 curl http://<host-ip>:9100/metrics
 ```
 
@@ -180,7 +180,7 @@ This project intentionally keeps private IP addresses out of the main repository
 
 ## Useful commands
 
-```bash
+```shell
 # View logs
  docker compose logs -f prometheus
  docker compose logs -f grafana
@@ -205,13 +205,13 @@ This project intentionally keeps private IP addresses out of the main repository
 
 - Verify the containers are running:
 
-  ```bash
+  ```shell
   docker compose ps
   ```
 
 - Check the logs:
 
-  ```bash
+  ```shell
   docker compose logs -f grafana
   ```
 
