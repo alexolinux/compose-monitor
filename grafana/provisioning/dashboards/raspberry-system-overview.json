@@ -59,11 +59,7 @@
       },
       "targets": [
         {
-<<<<<<< HEAD
-          "expr": "100 - (avg by (instance) (rate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-=======
           "expr": "100 - (avg by (instance) (rate(node_cpu_seconds_total{instance=~\"$instance\",mode=\"idle\"}[5m])) * 100)",
->>>>>>> 86d8635 (REFACT: Update README and Grafana dashboard for improved clarity and functionality)
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
@@ -107,11 +103,7 @@
       },
       "targets": [
         {
-<<<<<<< HEAD
-          "expr": "(1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100",
-=======
           "expr": "(1 - (node_memory_MemAvailable_bytes{instance=~\"$instance\"} / node_memory_MemTotal_bytes{instance=~\"$instance\"})) * 100",
->>>>>>> 86d8635 (REFACT: Update README and Grafana dashboard for improved clarity and functionality)
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
@@ -155,11 +147,7 @@
       },
       "targets": [
         {
-<<<<<<< HEAD
-          "expr": "100 * (node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes) / node_memory_SwapTotal_bytes",
-=======
           "expr": "100 * ((node_memory_SwapTotal_bytes{instance=~\"$instance\"} - node_memory_SwapFree_bytes{instance=~\"$instance\"}) / node_memory_SwapTotal_bytes{instance=~\"$instance\"})",
->>>>>>> 86d8635 (REFACT: Update README and Grafana dashboard for improved clarity and functionality)
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
@@ -218,11 +206,7 @@
       },
       "targets": [
         {
-<<<<<<< HEAD
-          "expr": "100 - (avg by (instance) (rate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-=======
           "expr": "100 - (avg by (instance) (rate(node_cpu_seconds_total{instance=~\"$instance\",mode=\"idle\"}[5m])) * 100)",
->>>>>>> 86d8635 (REFACT: Update README and Grafana dashboard for improved clarity and functionality)
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
@@ -281,11 +265,7 @@
       },
       "targets": [
         {
-<<<<<<< HEAD
-          "expr": "(1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100",
-=======
           "expr": "(1 - (node_memory_MemAvailable_bytes{instance=~\"$instance\"} / node_memory_MemTotal_bytes{instance=~\"$instance\"})) * 100",
->>>>>>> 86d8635 (REFACT: Update README and Grafana dashboard for improved clarity and functionality)
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
@@ -344,20 +324,12 @@
       },
       "targets": [
         {
-<<<<<<< HEAD
-          "expr": "sum by (instance) (rate(node_network_receive_bytes_total{device!~\"lo|veth.*|docker.*\"}[5m]))",
-=======
           "expr": "sum by (instance) (rate(node_network_receive_bytes_total{instance=~\"$instance\",device!~\"lo|veth.*|docker.*\"}[5m]))",
->>>>>>> 86d8635 (REFACT: Update README and Grafana dashboard for improved clarity and functionality)
           "legendFormat": "{{instance}} RX",
           "refId": "A"
         },
         {
-<<<<<<< HEAD
-          "expr": "sum by (instance) (rate(node_network_transmit_bytes_total{device!~\"lo|veth.*|docker.*\"}[5m]))",
-=======
           "expr": "sum by (instance) (rate(node_network_transmit_bytes_total{instance=~\"$instance\",device!~\"lo|veth.*|docker.*\"}[5m]))",
->>>>>>> 86d8635 (REFACT: Update README and Grafana dashboard for improved clarity and functionality)
           "legendFormat": "{{instance}} TX",
           "refId": "B"
         }
@@ -416,11 +388,7 @@
       },
       "targets": [
         {
-<<<<<<< HEAD
-          "expr": "100 * (1 - node_filesystem_avail_bytes{fstype!~\"tmpfs|overlay|squashfs\"} / node_filesystem_size_bytes{fstype!~\"tmpfs|overlay|squashfs\"})",
-=======
           "expr": "100 * (1 - node_filesystem_avail_bytes{instance=~\"$instance\",fstype!~\"tmpfs|overlay|squashfs\"} / node_filesystem_size_bytes{instance=~\"$instance\",fstype!~\"tmpfs|overlay|squashfs\"})",
->>>>>>> 86d8635 (REFACT: Update README and Grafana dashboard for improved clarity and functionality)
           "legendFormat": "{{instance}} {{mountpoint}}",
           "refId": "A"
         }
@@ -480,29 +448,17 @@
       },
       "targets": [
         {
-<<<<<<< HEAD
-          "expr": "node_load1",
-=======
           "expr": "node_load1{instance=~\"$instance\"}",
->>>>>>> 86d8635 (REFACT: Update README and Grafana dashboard for improved clarity and functionality)
           "legendFormat": "{{instance}} 1m",
           "refId": "A"
         },
         {
-<<<<<<< HEAD
-          "expr": "node_load5",
-=======
           "expr": "node_load5{instance=~\"$instance\"}",
->>>>>>> 86d8635 (REFACT: Update README and Grafana dashboard for improved clarity and functionality)
           "legendFormat": "{{instance}} 5m",
           "refId": "B"
         },
         {
-<<<<<<< HEAD
-          "expr": "node_load15",
-=======
           "expr": "node_load15{instance=~\"$instance\"}",
->>>>>>> 86d8635 (REFACT: Update README and Grafana dashboard for improved clarity and functionality)
           "legendFormat": "{{instance}} 15m",
           "refId": "C"
         }
@@ -546,11 +502,7 @@
       },
       "targets": [
         {
-<<<<<<< HEAD
-          "expr": "node_time_seconds - node_boot_time_seconds",
-=======
           "expr": "node_time_seconds{instance=~\"$instance\"} - node_boot_time_seconds{instance=~\"$instance\"}",
->>>>>>> 86d8635 (REFACT: Update README and Grafana dashboard for improved clarity and functionality)
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
@@ -569,9 +521,6 @@
     "prometheus"
   ],
   "templating": {
-<<<<<<< HEAD
-    "list": []
-=======
     "list": [
       {
         "current": {
@@ -598,7 +547,6 @@
         "type": "query"
       }
     ]
->>>>>>> 86d8635 (REFACT: Update README and Grafana dashboard for improved clarity and functionality)
   },
   "time": {
     "from": "now-1h",
@@ -608,10 +556,6 @@
   "timezone": "browser",
   "title": "Raspberry Pi System Overview",
   "uid": "raspberry-system-overview",
-<<<<<<< HEAD
-  "version": 1,
-=======
   "version": 2,
->>>>>>> 86d8635 (REFACT: Update README and Grafana dashboard for improved clarity and functionality)
   "weekStart": ""
 }
