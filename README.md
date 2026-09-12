@@ -25,14 +25,14 @@ The default setup is prepared to monitor at least two Raspberry hosts: `raspberr
 
 ## Project structure
 
-- `docker-compose.yml` — base services and ports
-- `docker-compose.override.yml` — local runtime override for private targets
-- `prometheus.yml` — public-safe Prometheus template
-- `prometheus.local.yml` — local list of hosts to scrape
+- `docker-compose.yml` — base services, ports, and runtime networking
+- `docker-compose.override.yml` — local override for the private target hosts
+- `prometheus.yml` — default Prometheus config using the local hostnames `raspberry.local` and `blackberry.local`
+- `prometheus.local.yml` — local list of hosts to scrape when running from a workstation or custom setup
 - `grafana/provisioning/datasources/datasource.yml` — Grafana datasource config
 - `grafana/provisioning/dashboards/dashboard.yml` — dashboard auto-provisioning
 - `grafana/provisioning/dashboards/raspberry-system-overview.json` — final dashboard
-- `.env` — local credentials and runtime values
+- `.env` — local credentials and private IP values for `DATASOURCE1` and `DATASOURCE2`
 
 ## Dashboard included
 
@@ -65,6 +65,17 @@ It includes:
    ```bash
    nano .env
    ```
+
+   Example values:
+
+   ```dotenv
+   GRAFANA_USERNAME="admin"
+   GRAFANA_PASSWORD="change-me"
+   DATASOURCE1="192.168.1.75"
+   DATASOURCE2="192.168.1.80"
+   ```
+
+   These values are used to resolve the local hostnames `raspberry.local` and `blackberry.local` in the Prometheus service.
 
 3. Confirm the hosts to be monitored:
 
@@ -117,9 +128,13 @@ Default Grafana credentials are configured in `.env`:
 - username: `GRAFANA_USERNAME`
 - password: `GRAFANA_PASSWORD`
 
+The private LAN targets are configured with `DATASOURCE1` and `DATASOURCE2`, which are mapped internally as `raspberry.local` and `blackberry.local` for Prometheus scrapes.
+
 ## Configure the monitored Raspberry hosts
 
 Each Raspberry host that should be monitored must expose Prometheus metrics via node-exporter on port `9100`.
+
+The monitoring host resolves the private targets through the Prometheus `extra_hosts` entries in `docker-compose.yml` using the values from `.env` (`DATASOURCE1` and `DATASOURCE2`). This keeps the internal hostnames stable even when the real IPs change.
 
 Example command to run on each target host:
 
